@@ -1,0 +1,46 @@
+project-new --named hotornot--top-level-package org.example --type war --final-name hotornot
+
+jpa-setup --provider Hibernate --container WILDFLY;
+
+jpa-new-entity --named Car --target-package org.example.model;
+jpa-new-field --named url;
+jpa-new-field --named make;
+jpa-new-field --named model;
+jpa-new-field --named rating --type java.lang.Integer --temporal-type Integer;
+
+constraint-add --on-property url --constraint NotNull;
+constraint-add --on-property make --constraint NotNull;
+constraint-add --on-property model --constraint NotNull;
+constraint-add --on-property rating --constraint Min 1;
+constraint-add --on-property rating --constraint Max 10;
+
+java-new-enum --named gender --target-package org.example.model;
+java-add-enum-const --named Male;
+java-add-enum-const --named Female;
+
+jpa-new-entity --named Celebrity --target-package org.example.model;
+jpa-new-field --named url;
+jpa-new-field --named firstname;
+jpa-new-field --named surname;
+jpa-new-field --named gender --type org.example.model.gender;
+jpa-new-field --named rating --type java.lang.Integer --temporal-type Integer;
+
+constraint-add --on-property url --constraint NotNull;
+constraint-add --on-property firstname --constraint NotNull;
+constraint-add --on-property surname --constraint NotNull;
+constraint-add --on-property gender --constraint NotNull;
+constraint-add --on-property rating --constraint Min 1;
+constraint-add --on-property rating --constraint Max 10;
+
+
+cd ..;
+
+rest-setup;
+rest-generate-endpoints-from-entities --targets org.example.model.*;
+
+scaffold-setup --provider AngularJS ;
+scaffold-generate --provider AngularJS --targets org.example.model.*;
+cd ~~;
+
+build;
+

@@ -1,0 +1,96 @@
+<div class="form-horizontal">
+    <h3>Create a new Celebrity</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Celebrities/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Celebrities</h3>
+    <form id="CelebritySearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="url" class="col-sm-2 control-label">Url</label>
+        <div class="col-sm-10">
+            <input id="url" name="url" class="form-control" type="text" ng-model="search.url" placeholder="Enter the Celebrity Url"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="firstname" class="col-sm-2 control-label">Firstname</label>
+        <div class="col-sm-10">
+            <input id="firstname" name="firstname" class="form-control" type="text" ng-model="search.firstname" placeholder="Enter the Celebrity Firstname"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="surname" class="col-sm-2 control-label">Surname</label>
+        <div class="col-sm-10">
+            <input id="surname" name="surname" class="form-control" type="text" ng-model="search.surname" placeholder="Enter the Celebrity Surname"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="gender" class="col-sm-2 control-label">Gender</label>
+        <div class="col-sm-10">
+            <select id="gender" name="gender" class="form-control" ng-model="search.gender" ng-options="g as g for g in genderList">
+                <option value="">Choose a Gender</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="rating" class="col-sm-2 control-label">Rating</label>
+        <div class="col-sm-10">
+            <input id="rating" name="rating" class="slider" type="range" ng-model="search.rating" min="1" max="10"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Gender</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><img src="{{result.url}}" width="100" height="100"></td>
+                    <td><a href="#/Celebrities/edit/{{result.id}}">{{result.firstname}}</a></td>
+                    <td><a href="#/Celebrities/edit/{{result.id}}">{{result.surname}}</a></td>
+                    <td><a href="#/Celebrities/edit/{{result.id}}">{{result.gender}}</a></td>
+                    <td><a href="#/Celebrities/edit/{{result.id}}">{{result.rating}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

@@ -1,0 +1,6 @@
+org\example\model\Car.class
+org\example\model\Celebrity.class
+org\example\model\gender.class
+org\hotornot\top\level\package_\rest\CelebrityEndpoint.class
+org\hotornot\top\level\package_\rest\CarEndpoint.class
+org\hotornot\top\level\package_\rest\RestApplication.class

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hotornot--top-level-package:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="hotornot.war">
+      <element id="artifact" artifact-name="hotornot--top-level-package:war exploded" />
+    </root>
+  </artifact>
+</component>

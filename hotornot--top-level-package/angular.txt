@@ -11,8 +11,6 @@ jpa-new-field --named rating --type java.lang.Integer --temporal-type Integer;
 constraint-add --on-property url --constraint NotNull;
 constraint-add --on-property make --constraint NotNull;
 constraint-add --on-property model --constraint NotNull;
-constraint-add --on-property rating --constraint Min 1;
-constraint-add --on-property rating --constraint Max 10;
 
 java-new-enum --named gender --target-package org.example.model;
 java-add-enum-const --named Male;
@@ -29,9 +27,6 @@ constraint-add --on-property url --constraint NotNull;
 constraint-add --on-property firstname --constraint NotNull;
 constraint-add --on-property surname --constraint NotNull;
 constraint-add --on-property gender --constraint NotNull;
-constraint-add --on-property rating --constraint Min 1;
-constraint-add --on-property rating --constraint Max 10;
-
 
 cd ..;
 
@@ -43,4 +38,3 @@ scaffold-generate --provider AngularJS --targets org.example.model.*;
 cd ~~;
 
 build;
-
